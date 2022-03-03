@@ -133,7 +133,12 @@ function App() {
       data.correct_response.forEach((c) => {
         formatAnswers += ` ${c} `;
       });
+      let myAnswers = ''
+      selections[data.id].answers.forEach((c) => {
+        myAnswers += ` ${letter[c]} `
+      })
       return {
+        myAnswer: myAnswers,
         correctAnswer: formatAnswers,
       };
     });
@@ -162,7 +167,7 @@ function App() {
                 <Button onClick={handleEvaluate}>Evaluate</Button>
               </Box>
             </Card>
-            {displayed.map((result) => {
+            {displayed.map((result, r) => {
               return (
                 <>
                   <Card>
@@ -177,7 +182,7 @@ function App() {
                           component="div"
                           variant="p"
                         >
-                          {removeHtmlTags(result.prompt.question)}
+                          [{r}] {removeHtmlTags(result.prompt.question)}
                         </Typography>
 
                         <Divider />
